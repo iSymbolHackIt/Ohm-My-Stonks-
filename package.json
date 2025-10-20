@@ -1,0 +1,14 @@
+{
+  "name": "ohm-my-stonks",
+  "version": "1.0.0",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "start": "npm run build && npx electron --no-sandbox .",
+    "build": "tsc --project tsconfig.json",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "electron": "^38.3.0",
+    "typescript": "^5.9.3"
+  }
+}
