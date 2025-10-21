@@ -1,14 +1,16 @@
 {
   "name": "ohm-my-stonks",
   "version": "1.0.0",
-  "main": "dist/main/main.js",
+  "type": "module",
+  "main": "dist/main.js",
   "scripts": {
-    "start": "npm run build && npx electron --no-sandbox .",
-    "build": "tsc --project tsconfig.json",
-    "watch": "tsc --watch"
+    "build": "tsc && npx tailwindcss -i ./src/style.css -o ./dist/style.css --minify && cp src/index.html dist/",
+    "start": "npm run build && npx electron dist/main.js"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.15",
     "electron": "^38.3.0",
+    "tailwindcss": "^4.1.15",
     "typescript": "^5.9.3"
   }
 }

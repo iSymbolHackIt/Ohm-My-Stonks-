@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohm My Stonks ⚡</title>
+
+    <!-- Tailwind build -->
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+
+    <style>
+      /* Fade + shrink explosion animation */
+      @keyframes disappear {
+        0% { opacity: 1; transform: scale(1); filter: blur(0); }
+        50% { opacity: 0.5; transform: scale(1.1); filter: blur(2px); }
+        100% { opacity: 0; transform: scale(0.8); filter: blur(8px); }
+      }
+      .disappear {
+        animation: disappear 0.6s ease forwards;
+      }
+    </style>
+  </head>
+
+  <body class="bg-black text-gray-100 flex flex-col items-center justify-center min-h-screen text-center">
+    <div id="main" class="flex flex-col items-center justify-center gap-6 transition-all duration-700">
+      <h1
+        id="title"
+        class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-white to-yellow-500 animate-pulse"
+      >
+        Ohm My Stonks ⚡
+      </h1>
+
+      <p id="desc" class="mt-2 text-gray-300 max-w-xl">
+        Ohm My Stonks! is a <b>simple</b> crypto and stocks tracking <b>and</b> helper
+        software.
+      </p>
+
+      <button
+        id="chargeBtn"
+        class="mt-20 px-6 py-3 font-semibold text-yellow-300 border border-yellow-400 rounded-xl 
+        bg-gray-900 hover:bg-yellow-400 hover:text-black transition-all duration-300 
+        shadow-[0_0_15px_rgba(255,255,100,0.5)] hover:shadow-[0_0_25px_rgba(255,255,120,0.9)]"
+      >
+        ⚡ Charge Up
+      </button>
+    </div>
+
+    <!-- Hidden tutorial section -->
+    <div id="tutorial" class="hidden flex flex-col items-center justify-center gap-4">
+      <h2 class="text-3xl font-bold text-yellow-400">⚙️ Tutorial Mode</h2>
+      <p class="text-gray-300 max-w-lg">
+        Welcome to your guided experience. Here you’ll learn how to use Ohm My Stonks — from setting up wallets to tracking live market data.
+      </p>
+      <button
+        id="backBtn"
+        class="mt-8 px-6 py-3 font-semibold text-yellow-300 border border-yellow-400 rounded-xl 
+        bg-gray-900 hover:bg-yellow-400 hover:text-black transition-all duration-300"
+      >
+        🔙 Back
+      </button>
+    </div>
+
+    <script>
+      const chargeBtn = document.getElementById("chargeBtn");
+      const backBtn = document.getElementById("backBtn");
+      const main = document.getElementById("main");
+      const tutorial = document.getElementById("tutorial");
+
+      // Charge Up: fade out everything and show tutorial
+      chargeBtn.addEventListener("click", () => {
+        main.querySelectorAll("*").forEach(el => el.classList.add("disappear"));
+        setTimeout(() => {
+          main.classList.add("hidden");
+          tutorial.classList.remove("hidden");
+        }, 600);
+      });
+
+      // Back button: bring main content back
+      backBtn.addEventListener("click", () => {
+        tutorial.classList.add("hidden");
+        main.classList.remove("hidden");
+        main.querySelectorAll("*").forEach(el => el.classList.remove("disappear"));
+      });
+    </script>
+  </body>
+</html>
